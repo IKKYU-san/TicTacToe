@@ -11,22 +11,26 @@ namespace TicTacToe
         static void Main(string[] args)
         {
             TicTacToe game = new TicTacToe();
-            game.PlayerToken = "X";
+            game.PlayerToken = "O";
 
-            do {
+            do
+            {
+                if (game.PlayerToken == "O")
+                {
+                    game.PlayerToken = "X";
+                }
+                else game.PlayerToken = "O";
+
+
                 game.DrawBoard();
-
                 Console.Write($"Player {game.PlayerToken} Move: ");
                 game.PlayerMove();
-
-                if (game.CheckWin())
-                {
-                    Console.WriteLine($"Player {game.PlayerToken} wins!");
-                    
-                }
-
-            } 
+            }
             while (!game.CheckWin());
+
+            game.DrawBoard();
+            Console.WriteLine($"Player {game.PlayerToken} wins!");
         }
+
     }
 }
