@@ -43,7 +43,7 @@ namespace TicTacToe
             while (!answer)
             {
                 string playerChoice = Console.ReadKey(true).KeyChar.ToString();
-               
+
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -51,7 +51,6 @@ namespace TicTacToe
                         if (board[i, j] == playerChoice && (board[i, j] != "X" || board[i, j] != "O"))
                         {
                             board[i, j] = PlayerToken;
-                            DrawBoard();
                             answer = true;
                             return;
                         }                        
@@ -67,19 +66,53 @@ namespace TicTacToe
                     Console.Write($"Try again Player {PlayerToken}: ");
                 }
             }
+
         }
 
         public bool CheckWin()
         {
+            // Check diagonally from upper left corner to lower right
             if (board[0, 0] == PlayerToken && board[1,1] == PlayerToken && board [2,2] == PlayerToken)
             {
                 return true;
             }
-
+            // Check diagonally from lower left corner to upper right corner
             if (board[2, 0] == PlayerToken && board[1, 1] == PlayerToken && board[0, 2] == PlayerToken)
             {
                 return true;
             }
+            // Check horizontally from top left corner to upper right corner
+            if (board[0, 0] == PlayerToken && board[0, 1] == PlayerToken && board[0, 2] == PlayerToken)
+            {
+                return true;
+            }
+            // Check horizontally from middle left to middle right
+            if (board[1, 0] == PlayerToken && board[1, 1] == PlayerToken && board[1, 2] == PlayerToken)
+            {
+                return true;
+            }
+            // Check horizontally from bottom left corner to bottom right corner
+            if (board[2, 0] == PlayerToken && board[2, 1] == PlayerToken && board[2, 2] == PlayerToken)
+            {
+                return true;
+            }
+
+            // Check vertically from top left corner to bottom left corner
+            if (board[0, 0] == PlayerToken && board[2, 0] == PlayerToken && board[2, 0] == PlayerToken)
+            {
+                return true;
+            }
+            // Check vertically from top middle to bottom middle
+            if (board[0, 1] == PlayerToken && board[1, 1] == PlayerToken && board[2, 1] == PlayerToken)
+            {
+                return true;
+            }
+            // Check vertically from top right corner to bottom right corner
+            if (board[0, 2] == PlayerToken && board[1, 2] == PlayerToken && board[2, 2] == PlayerToken)
+            {
+                return true;
+            }
+
             return false;
         }
     }
