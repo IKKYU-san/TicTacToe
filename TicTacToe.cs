@@ -19,6 +19,7 @@ namespace TicTacToe
             board = new string[,] { { "1", "2", "3" }, 
                                     { "4", "5", "6" }, 
                                     { "7", "8", "9" }};
+            PlayerToken = "O";
         }
 
         public void DrawBoard()
@@ -42,6 +43,7 @@ namespace TicTacToe
         public void PlayerMove()
         {
             bool answer = false;
+
             while (!answer)
             {
                 string playerChoice = Console.ReadKey(true).KeyChar.ToString();

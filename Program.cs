@@ -11,8 +11,7 @@ namespace TicTacToe
         static void Main(string[] args)
         {
             TicTacToe game = new TicTacToe();
-            game.PlayerToken = "O";
-
+            
             do
             {
                 game.NextPlayer();
