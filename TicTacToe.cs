@@ -9,6 +9,8 @@ namespace TicTacToe
     class TicTacToe
     {
         public string PlayerToken { get; set; }
+        public bool Over { get; set; }
+        public int Turn { get; set; }
 
         string[,] board = new string[3,3];
         
@@ -51,6 +53,7 @@ namespace TicTacToe
                         if (board[i, j] == playerChoice && (board[i, j] != "X" || board[i, j] != "O"))
                         {
                             board[i, j] = PlayerToken;
+                            Turn++;
                             answer = true;
                             return;
                         }                        
@@ -67,6 +70,15 @@ namespace TicTacToe
                 }
             }
 
+        }
+
+        public void NextPlayer()
+        {
+            if (PlayerToken == "O")
+            {
+                PlayerToken = "X";
+            }
+            else PlayerToken = "O";
         }
 
         public bool CheckWin()
@@ -98,7 +110,7 @@ namespace TicTacToe
             }
 
             // Check vertically from top left corner to bottom left corner
-            if (board[0, 0] == PlayerToken && board[2, 0] == PlayerToken && board[2, 0] == PlayerToken)
+            if (board[0, 0] == PlayerToken && board[1, 0] == PlayerToken && board[2, 0] == PlayerToken)
             {
                 return true;
             }

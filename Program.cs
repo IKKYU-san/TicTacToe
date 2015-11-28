@@ -15,21 +15,25 @@ namespace TicTacToe
 
             do
             {
-                if (game.PlayerToken == "O")
-                {
-                    game.PlayerToken = "X";
-                }
-                else game.PlayerToken = "O";
-
-
+                game.NextPlayer();
                 game.DrawBoard();
                 Console.Write($"Player {game.PlayerToken} Move: ");
                 game.PlayerMove();
-            }
-            while (!game.CheckWin());
 
-            game.DrawBoard();
-            Console.WriteLine($"Player {game.PlayerToken} wins!");
+                if (game.CheckWin())
+                {
+                    game.DrawBoard();
+                    Console.WriteLine($"Player {game.PlayerToken} wins!");
+                    game.Over = true;
+                }
+                else if (game.Turn == 9)
+                {
+                    game.DrawBoard();
+                    Console.WriteLine("It's a Draw!");
+                    game.Over = true;
+                }
+            }
+            while (!game.Over);
         }
 
     }
